@@ -59,7 +59,7 @@ export default class App extends Component {
     }
 
     async populateWeatherData() {
-        const response = await fetch('weatherforecast');
+        const response = await fetch('cardpresentation');
         const data = await response.json();
         this.setState({ forecasts: data, loading: false });
     }

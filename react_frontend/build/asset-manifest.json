@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.073c9b0a.css",
+    "main.js": "/static/js/main.886b86d8.js",
+    "static/js/787.0f148dca.chunk.js": "/static/js/787.0f148dca.chunk.js",
+    "index.html": "/index.html",
+    "static/media/hexagon_logo.svg": "/static/media/hexagon_logo.b2ef1b0c1b9715a6f0b192bca5914cb0.svg",
+    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
+    "main.886b86d8.js.map": "/static/js/main.886b86d8.js.map",
+    "787.0f148dca.chunk.js.map": "/static/js/787.0f148dca.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.886b86d8.js"
+  ]
+}

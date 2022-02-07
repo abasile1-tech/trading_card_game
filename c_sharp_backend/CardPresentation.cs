@@ -1,6 +1,6 @@
 namespace c_sharp_backend
 {
-    public class WeatherForecast
+    public class CardPresentation
     {
         public DateTime Date { get; set; }
 
