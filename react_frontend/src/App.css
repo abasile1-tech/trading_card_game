@@ -28,6 +28,12 @@
   color: #61dafb;
 }
 
+.table.table-striped {
+  border:solid black;
+  padding: 1em;
+  width: 70%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
