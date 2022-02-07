@@ -8,7 +8,17 @@ namespace c_sharp_backend.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        "Menacing", "Psychotic", "Indignant", "Cool", "Chaotic"
+        };
+
+        private static readonly string[] CardNames = new[]
+        {
+        "Jaro","Benog","Sartik","Nakjo","Runtix"
+        };
+
+        private static readonly string[] CardColors = new[]
+        {
+        "Black","Silver","Blue","White","Yellow"
         };
 
         private readonly ILogger<CardPresentationController> _logger;
@@ -21,11 +31,11 @@ namespace c_sharp_backend.Controllers
         [HttpGet(Name = "GetCardPresentation")]
         public IEnumerable<CardPresentation> Get()
         {
-            return Enumerable.Range(1, 20).Select(index => new CardPresentation
+            return Enumerable.Range(0, CardNames.Length).Select(index => new CardPresentation
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                CardName = CardNames[index],
+                CardColor = CardColors[index],
+                Summary = Summaries[index]
             })
             .ToArray();
         }

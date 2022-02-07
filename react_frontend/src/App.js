@@ -7,31 +7,29 @@ export default class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true };
+        this.state = { cards: [], loading: true };
     }
 
     componentDidMount() {
-        this.populateWeatherData();
+        this.populatecardData();
     }
 
-    static renderForecastsTable(forecasts) {
+    static rendercardsTable(cards) {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
+                        <th>Card Name</th>
+                        <th>Card Color</th>
                         <th>Summary</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {forecasts.map(forecast =>
-                        <tr key={forecast.date}>
-                            <td>{forecast.date}</td>
-                            <td>{forecast.temperatureC}</td>
-                            <td>{forecast.temperatureF}</td>
-                            <td>{forecast.summary}</td>
+                    {cards.map(card =>
+                        <tr key={card.cardName}>
+                            <td>{card.cardName}</td>
+                            <td>{card.cardColor}</td>
+                            <td>{card.summary}</td>
                         </tr>
                     )}
                 </tbody>
@@ -42,7 +40,7 @@ export default class App extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-            : App.renderForecastsTable(this.state.forecasts);
+            : App.rendercardsTable(this.state.cards);
 
         return (
             <div className="App">
@@ -50,7 +48,7 @@ export default class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <p>Edit <code>src/App.js</code> and save to reload.</p>
                     <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">Learn React</a>
-                    <h1 id="tabelLabel" >Weather forecast</h1>
+                    <h1 id="tabelLabel" >card card</h1>
                     <p>This component demonstrates fetching data from the server.</p>
                     {contents}
                 </header>
@@ -58,9 +56,9 @@ export default class App extends Component {
         );
     }
 
-    async populateWeatherData() {
+    async populatecardData() {
         const response = await fetch('cardpresentation');
         const data = await response.json();
-        this.setState({ forecasts: data, loading: false });
+        this.setState({ cards: data, loading: false });
     }
 }

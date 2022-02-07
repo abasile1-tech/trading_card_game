@@ -2,11 +2,9 @@ namespace c_sharp_backend
 {
     public class CardPresentation
     {
-        public DateTime Date { get; set; }
+        public string? CardName { get; set; }
 
-        public int TemperatureC { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        public string? CardColor{ get; set; }
 
         public string? Summary { get; set; }
     }
