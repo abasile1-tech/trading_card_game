@@ -7,7 +7,11 @@ export default class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { cards: [], loading: true };
+        this.state = {
+            cards: [],
+            loading: true,
+            nameInput:""
+        };
     }
 
     componentDidMount() {
@@ -48,6 +52,12 @@ export default class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 id="tabelLabel" >Card Table</h1>
                     {contents}
+                    <div>
+                        <label for="nameInput">Name:</label>
+                        <input type="text" id="nameInput" placeholder="Please enter your name:"></input>
+                        <button onClick={this.submitButtonClicked}>Submit</button>
+                        
+                    </div>
                 </header>
             </div>
         );
@@ -57,5 +67,9 @@ export default class App extends Component {
         const response = await fetch('cardpresentation');
         const data = await response.json();
         this.setState({ cards: data, loading: false });
+    }
+
+    async submitButtonClicked() {
+        alert('You clicked me');
     }
 }
