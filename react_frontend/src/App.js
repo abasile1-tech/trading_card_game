@@ -52,7 +52,7 @@ export default class App extends Component {
 					{contents}
 					<div>
 						<label htmlFor="nameInput">Name:</label>
-						<input type="text" id="nameInput" value={this.nameInput} placeholder="Please enter your name:"></input>
+						<input type="text" id="nameInput" value={App.nameInput} placeholder="Please enter your name:"></input>
 						<button onClick={this.submitButtonClicked}>Submit</button>
 						
 					</div>
@@ -69,7 +69,7 @@ export default class App extends Component {
 
 	async submitButtonClicked() {
 		alert('You clicked me');
-		// console.log(this.nameInput);
+		console.log(App.nameInput);
 		// this.nameInput="";
 	}
 }
