@@ -44,6 +44,13 @@ namespace c_sharp_backend.Controllers
 				Console.WriteLine("Reading:" + reader["color"]);
 				Console.WriteLine("Reading:" + reader["description"]);
 			}
+			conn.Close();
+			MySqlConnection conn2 = new MySqlConnection("server=localhost;port=3306;database=trading_cards;username=root;password=");
+			conn2.Open();
+			string query2 = "INSERT INTO trading_cards.cards (id,name,color,description) values('4','4name','4color','4description')";
+			MySqlCommand cmd2 = new MySqlCommand(query2, conn2);
+			cmd2.ExecuteNonQuery();
+			conn2.Close();
 		}
 		
 
