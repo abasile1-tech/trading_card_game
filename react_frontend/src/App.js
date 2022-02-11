@@ -53,12 +53,12 @@ export default class App extends Component {
 					{contents}
 					<div>
 						<label htmlFor="textInput">Name:</label>
-						<input type="text" id="textInput" value={this.state.nameInput} onChange={this.handleNameInputChange} placeholder="Please enter your name:" onKeyPress={(event) => {
+						<input type="text" id="textInput" value={this.state.nameInput} onChange={this.handleNameInputChange} placeholder="Please enter your name and press Enter:" onKeyPress={(event) => {
 							if (event.key === "Enter") {
 								this.submitButtonClicked();
 							}
 						}}></input>
-						<button onClick={this.submitButtonClicked}>Submit</button>
+						{/*<button onClick={this.submitButtonClicked} value={this.state.nameInput} onChange={this.handleNameInputChange} >Submit</button>*/}
 						
 					</div>
 				</header>
@@ -79,5 +79,6 @@ export default class App extends Component {
 	async submitButtonClicked(event) {
 		//alert('You clicked me');
 		console.log("this.state.nameInput:", this.state.nameInput);
+		this.setState({ nameInput: "" });
 	}
 }
