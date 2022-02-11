@@ -48,11 +48,12 @@ namespace c_sharp_backend.Controllers
 			conn.Close();
 		}
 		
-		static void WriteToDatabase()
+		static void WriteToDatabase(String table_id, String column_name, String column_color, String column_description)
         {
 			MySqlConnection conn2 = new MySqlConnection("server=localhost;port=3306;database=trading_cards;username=root;password=");
 			conn2.Open();
-			string query2 = "INSERT INTO trading_cards.cards (id,name,color,description) values('4','4name','4color','4description')";
+			string query2 = "INSERT INTO trading_cards.cards (id,name,color,description) values('" + table_id + "','" + column_name + "','" + column_color + "','" + column_description +"')";
+			Console.WriteLine(query2);
 			MySqlCommand cmd2 = new MySqlCommand(query2, conn2);
 			cmd2.ExecuteNonQuery();
 			conn2.Close();
@@ -67,6 +68,7 @@ namespace c_sharp_backend.Controllers
 			ReadFromDatabase("name","1");
 			ReadFromDatabase("color","1");
 			ReadFromDatabase("description","1");
+			WriteToDatabase("6", "6name","6color", "6desc");
 			return Enumerable.Range(0, CardNames.Length).Select(index => new CardPresentation
 			{
 				CardName = CardNames[index],
