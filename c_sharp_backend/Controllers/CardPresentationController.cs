@@ -68,7 +68,7 @@ namespace c_sharp_backend.Controllers
 			ReadFromDatabase("name","1");
 			ReadFromDatabase("color","1");
 			ReadFromDatabase("description","1");
-			WriteToDatabase("6", "6name","6color", "6desc");
+			//WriteToDatabase("6", "6name","6color", "6desc");
 			return Enumerable.Range(0, CardNames.Length).Select(index => new CardPresentation
 			{
 				CardName = CardNames[index],

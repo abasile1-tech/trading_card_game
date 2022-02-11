@@ -11,6 +11,7 @@ export default class App extends Component {
 			loading: true,
 			nameInput:""
 		};
+		this.handleNameInputChange = this.handleNameInputChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -51,8 +52,12 @@ export default class App extends Component {
 					<h1 id="tabelLabel" >Card Table</h1>
 					{contents}
 					<div>
-						<label for="nameInput">Name:</label>
-						<input type="text" id="nameInput" placeholder="Please enter your name:"></input>
+						<label htmlFor="textInput">Name:</label>
+						<input type="text" id="textInput" value={this.state.nameInput} onChange={this.handleNameInputChange} placeholder="Please enter your name:" onKeyPress={(event) => {
+							if (event.key === "Enter") {
+								this.submitButtonClicked();
+							}
+						}}></input>
 						<button onClick={this.submitButtonClicked}>Submit</button>
 						
 					</div>
@@ -61,13 +66,18 @@ export default class App extends Component {
 		);
 	}
 
+	async handleNameInputChange(event) {
+		this.setState({ nameInput: event.target.value });
+	}
+
 	async populatecardData() {
 		const response = await fetch('cardpresentation');
 		const data = await response.json();
 		this.setState({ cards: data, loading: false });
 	}
 
-	async submitButtonClicked() {
-		alert('You clicked me');
+	async submitButtonClicked(event) {
+		//alert('You clicked me');
+		console.log("this.state.nameInput:", this.state.nameInput);
 	}
 }
