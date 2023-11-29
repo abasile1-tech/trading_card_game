@@ -21,13 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-#I added the following to the gitignore 
-/c_sharp_backend/obj/
-/c_sharp_backend/bin/
-trading_card_game.sln
-/react_frontend/package-lock.json
-/react_frontend/react_frontend.esproj.user
-/react_frontend/react_frontend.esproj
-.vs/
-.vscode/
