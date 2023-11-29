@@ -26,11 +26,8 @@ yarn-error.log*
 /c_sharp_backend/obj/
 /c_sharp_backend/bin/
 trading_card_game.sln
-/react_frontend/nuget.config
 /react_frontend/package-lock.json
 /react_frontend/react_frontend.esproj.user
 /react_frontend/react_frontend.esproj
-/react_frontend/aspnetcore-https.js
-/react_frontend/aspnetcore-react.js
 .vs/
 .vscode/
