@@ -11,6 +11,7 @@ export default class App extends Component {
 			loading: true,
 			nameInput:""
 		};
+		this.handleNameInputChange = this.handleNameInputChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -51,14 +52,22 @@ export default class App extends Component {
 					<h1 id="tabelLabel" >Card Table</h1>
 					{contents}
 					<div>
-						<label htmlFor="nameInput">Name:</label>
-						<input type="text" id="nameInput" value={App.nameInput} placeholder="Please enter your name:"></input>
-						<button onClick={this.submitButtonClicked}>Submit</button>
+						<label htmlFor="textInput">Name:</label>
+						<input type="text" id="textInput" value={this.state.nameInput} onChange={this.handleNameInputChange} placeholder="Please enter your name and press Enter:" onKeyPress={(event) => {
+							if (event.key === "Enter") {
+								this.submitButtonClicked();
+							}
+						}}></input>
+						{/*<button onClick={this.submitButtonClicked} value={this.state.nameInput} onChange={this.handleNameInputChange} >Submit</button>*/}
 						
 					</div>
 				</header>
 			</div>
 		);
+	}
+
+	async handleNameInputChange(event) {
+		this.setState({ nameInput: event.target.value });
 	}
 
 	async populatecardData() {
@@ -67,9 +76,25 @@ export default class App extends Component {
 		this.setState({ cards: data, loading: false });
 	}
 
-	async submitButtonClicked() {
-		alert('You clicked me');
-		console.log(App.nameInput);
-		// this.nameInput="";
+	async submitButtonClicked(event) {
+		//alert('You clicked me');
+		const requestOptions = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				username: this.state.nameInput,
+			//	password: password,
+			//	email: email,
+			//	role: role
+			}),
+		};
+		console.log("this.state.nameInput:", this.state.nameInput);
+		await fetch('cardpresentation', requestOptions)
+			.then((response) => response.text())
+			.then((data) => {
+
+
+			});
+		this.setState({ nameInput: "" });
 	}
 }

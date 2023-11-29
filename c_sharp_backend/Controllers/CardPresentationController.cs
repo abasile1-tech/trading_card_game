@@ -29,7 +29,7 @@ namespace c_sharp_backend.Controllers
 			_logger = logger;
 		}
 
-		static void ConnectToDatabase()
+		static void ReadFromDatabase(String columnLabel,String table_id)
 		{
 			MySqlConnection conn = new MySqlConnection("server=localhost;port=3306;database=trading_cards;username=root;password=");
 			conn.Open();
@@ -39,26 +39,36 @@ namespace c_sharp_backend.Controllers
 			Console.WriteLine("Database Connected!");
 			while (reader.Read())
 			{
-				Console.WriteLine("Reading:" + reader["id"]);
-				Console.WriteLine("Reading:" + reader["name"]);
-				Console.WriteLine("Reading:" + reader["color"]);
-				Console.WriteLine("Reading:" + reader["description"]);
+				if (reader["id"].ToString() == table_id)
+                {
+					Console.WriteLine("Reading:" + reader[columnLabel]);
+				}
+				
 			}
 			conn.Close();
+		}
+		
+		static void WriteToDatabase(String table_id, String column_name, String column_color, String column_description)
+        {
 			MySqlConnection conn2 = new MySqlConnection("server=localhost;port=3306;database=trading_cards;username=root;password=");
 			conn2.Open();
-			string query2 = "INSERT INTO trading_cards.cards (id,name,color,description) values('4','4name','4color','4description')";
+			string query2 = "INSERT INTO trading_cards.cards (id,name,color,description) values('" + table_id + "','" + column_name + "','" + column_color + "','" + column_description +"')";
+			Console.WriteLine(query2);
 			MySqlCommand cmd2 = new MySqlCommand(query2, conn2);
 			cmd2.ExecuteNonQuery();
 			conn2.Close();
 		}
-		
+
 
 		[HttpGet(Name = "GetCardPresentation")]
 		public IEnumerable<CardPresentation> Get()
 		{
 			Console.WriteLine("fetching the backend");
-			ConnectToDatabase();
+			ReadFromDatabase("id","1");
+			ReadFromDatabase("name","1");
+			ReadFromDatabase("color","1");
+			ReadFromDatabase("description","1");
+			//WriteToDatabase("6", "6name","6color", "6desc");
 			return Enumerable.Range(0, CardNames.Length).Select(index => new CardPresentation
 			{
 				CardName = CardNames[index],
@@ -67,5 +77,12 @@ namespace c_sharp_backend.Controllers
 			})
 			.ToArray();
 		}
+
+		[HttpPost(Name = "PostCardPresentation")]
+		public void Post()
+      {
+				Console.WriteLine("posting");
+				Console.WriteLine(Request.Headers);
+      }
 	}
 }
