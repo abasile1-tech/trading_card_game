@@ -77,5 +77,12 @@ namespace c_sharp_backend.Controllers
 			})
 			.ToArray();
 		}
+
+		[HttpPost(Name = "PostCardPresentation")]
+		public void Post()
+      {
+				Console.WriteLine("posting");
+				Console.WriteLine(Request.Headers);
+      }
 	}
 }

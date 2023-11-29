@@ -78,7 +78,23 @@ export default class App extends Component {
 
 	async submitButtonClicked(event) {
 		//alert('You clicked me');
+		const requestOptions = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				username: this.state.nameInput,
+			//	password: password,
+			//	email: email,
+			//	role: role
+			}),
+		};
 		console.log("this.state.nameInput:", this.state.nameInput);
+		await fetch('cardpresentation', requestOptions)
+			.then((response) => response.text())
+			.then((data) => {
+
+
+			});
 		this.setState({ nameInput: "" });
 	}
 }
